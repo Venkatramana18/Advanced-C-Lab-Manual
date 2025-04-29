@@ -9,12 +9,57 @@ Algorithm:
 4.	Call the search function and perform other linked list operations as needed.
  
 Program:
-
-//type your code here
+```
+ #include <stdio.h>
+ #include <stdlib.h>
+ struct Node {
+    int data;
+    struct Node *next;
+ };
+ void search(struct Node *head, int value) {
+    struct Node *current = head;
+    int position = 1;
+    while (current != NULL) {
+        if (current->data == value) {
+            printf("Element %d found at position %d.\n", value, 
+position);
+            return;
+        }
+        current = current->next;
+        position++;
+    }
+    printf("Element %d not found in the list.\n", value);
+ }
+ int main() {
+    struct Node *head = NULL, *newNode, *temp;
+    int n, value;
+    printf("Enter number of elements in the linked list: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        newNode = (struct Node*)malloc(sizeof(struct Node));
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &newNode->data);
+        newNode->next = NULL;
+        if (head == NULL) {
+            head = newNode;
+        } else {
+            temp = head;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+        }
+    }
+    printf("Enter element to search: ");
+    scanf("%d", &value);
+    search(head, value);
+    return 0;
+ }
+```
 
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/35047550-48e8-4845-9c35-835e34ff8a7d)
 
 
 
@@ -33,12 +78,57 @@ Algorithm:
 4.	Call the insert function and perform other linked list operations as needed.
  
 Program:
-
-//type your code here
-
+```
+ #include <stdio.h>
+ #include <stdlib.h>
+ struct Node {
+    int data;
+    struct Node *next;
+ };
+ void insert(struct Node **head, int value) {
+    struct Node newNode = (struct Node)malloc(sizeof(struct Node));
+    struct Node *temp = *head;
+    newNode->data = value;
+    newNode->next = NULL;
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+ }
+ void display(struct Node *head) {
+    struct Node *temp = head;
+    if (temp == NULL) {
+        printf("The list is empty.\n");
+        return;
+    }
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+ }
+ int main() {
+    struct Node *head = NULL;
+    int n, value;
+    printf("Enter number of elements to insert: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &value);
+        insert(&head, value);
+    }
+     printf("Linked List: ");
+     display(head);
+     return 0;
+ }
+```
 Output:
+![image](https://github.com/user-attachments/assets/4e677b4d-aafe-46d2-b29a-b9d54c4c110d)
 
-//paste your output here
 
  
 Result:
@@ -57,12 +147,57 @@ Algorithm:
 4.	Move to the next node by updating the temp pointer to point to the next node (temp = temp->next).
  
 Program:
-
-//type your code here
+```
+ #include <stdio.h>
+ #include <stdlib.h>
+ struct Node {
+    int data;
+    struct Node *next;
+    struct Node *prev;
+ };
+ void traverse(struct Node *head) {
+    struct Node *temp = head;
+     if (temp == NULL) {
+        printf("The list is empty.\n");
+        return;
+    }
+    printf("Traversing the doubly linked list: ");
+    while (temp != NULL) {
+        printf("%d <-> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+ }
+ int main() {
+    struct Node *head = NULL, *newNode, *temp;
+    int n, value;
+    printf("Enter the number of elements to insert: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        newNode = (struct Node*)malloc(sizeof(struct Node));
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &newNode->data);
+        newNode->next = NULL;
+        newNode->prev = NULL;
+        if (head == NULL) {
+            head = newNode;
+        } else {
+            temp = head;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+            newNode->prev = temp;
+        }
+    }
+    traverse(head);
+    return 0;
+ }
+```
 
 Output:
+![image](https://github.com/user-attachments/assets/83d0ca35-0dc5-42d7-85b3-f2b8012b17d8)
 
-//paste your output here
 
 
 Result:
@@ -82,12 +217,61 @@ Algorithm:
 5.	Set the new node's prev pointer to the last node and update the last node's next pointer to the new node.
  
 Program:
-
-//type your code here
+```
+ #include <stdio.h>
+ #include <stdlib.h>
+ struct Node {
+    int data;
+    struct Node *next;
+    struct Node *prev;
+ };
+ void insert(struct Node **head, int value) {
+    struct Node newNode = (struct Node)malloc(sizeof(struct Node));
+    struct Node *temp = *head;
+    newNode->data = value;
+    newNode->next = NULL;
+    newNode->prev = NULL;
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+     while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    newNode->prev = temp;
+ }
+ void display(struct Node *head) {
+    struct Node *temp = head;
+    if (temp == NULL) {
+        printf("The list is empty.\n");
+        return;
+    }
+    printf("Doubly Linked List: ");
+    while (temp != NULL) {
+        printf("%d <-> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+ }
+ int main() {
+    struct Node *head = NULL;
+    int n, value;
+    printf("Enter the number of elements to insert: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &value);
+        insert(&head, value);
+    }
+    display(head);
+    return 0;
+ }
+```
 
 Output:
+![image](https://github.com/user-attachments/assets/93caf48f-533d-4cd3-ab05-2eb2f08b36ed)
 
-//paste your output here
 
 
 Result:
@@ -124,12 +308,74 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 
 Program:
-
-//type your code here
+```
+ #include <stdio.h>
+ #include <stdlib.h>
+ struct Node {
+    int data;
+    struct Node *next;
+ };
+ void deleteNode(struct Node **head, int value) {
+    if (*head == NULL) {
+        printf("The list is empty.\n");
+        return;
+    }
+    struct Node *temp = *head, *prev = NULL;
+    if (temp != NULL && temp->data == value) {
+        *head = temp->next;
+        free(temp);
+        printf("Element %d deleted from the list.\n", value);
+        return;
+    }
+    while (temp != NULL && temp->data != value) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL) {
+        printf("Element %d not found in the list.\n", value);
+        return;
+    }
+    prev->next = temp->next;
+    free(temp);
+    printf("Element %d deleted from the list.\n", value);
+ }
+ void display(struct Node *head) {
+    if (head == NULL) {
+        printf("The list is empty.\n");
+        return;
+    }
+    struct Node *temp = head;
+    printf("Linked List: ");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+ }
+ int main() {
+    struct Node *head = NULL;
+    int n, value, deleteValue;
+    printf("Enter the number of elements to insert: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        struct Node newNode = (struct Node)malloc(sizeof(struct Node));
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &newNode->data);
+        newNode->next = head;
+        head = newNode;
+    }
+    display(head);
+    printf("Enter the element to delete: ");
+    scanf("%d", &deleteValue);
+    deleteNode(&head, deleteValue);
+    display(head);
+    return 0;
+ }
+```
 
 Output:
+![image](https://github.com/user-attachments/assets/db35226f-6691-48cf-a433-3f1187a3f3a7)
 
-//paste your output here
 
 
 
