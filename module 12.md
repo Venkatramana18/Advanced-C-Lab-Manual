@@ -15,11 +15,25 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node   
+{  
+char data[100];  
+struct Node *next;  
+}*head;
+
+void display() {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%s\n", temp->data);
+        temp = temp->next;
+    }
+}
+```
 
 Output:
+![image](https://github.com/user-attachments/assets/b7ebc4a0-07e9-4e71-9dde-787338933ba0)
 
-//paste your output here
 
 
 Result:
@@ -40,11 +54,33 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node   
+{  
+float data;  
+struct Node *next;  
+}*head;  
+
+void pop(){
+    
+    struct Node *ptr;  
+    if(head==NULL)  
+    {  
+        printf("stack is empty\n");  
+    }  
+    else  
+    {  
+        ptr=head;  
+        head=ptr->next;  
+        free(ptr);  
+    }  
+}
+```
 
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/aafab7b8-2306-49ba-822e-4b42c0808dad)
+
 
 
 
