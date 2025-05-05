@@ -12,10 +12,30 @@ Algorithm:
 5.	Call the max_of_four function with the input integers and store the result in the greater variable
  
 Program:
-//type your code here
+```
+#include <stdio.h>
 
+int max_of_four(int a, int b, int c, int d) {
+    int max = a;
+    if (b > max) max = b;
+    if (c > max) max = c;
+    if (d > max) max = d;
+    return max;
+}
+
+int main() {
+    int a, b, c, d;
+    scanf("%d %d %d %d", &a, &b, &c, &d);
+    
+    printf("%d\n", max_of_four(a,b,c,d));
+    
+    return 0;
+    
+}
+```
 Output:
-//paste your output here
+![image](https://github.com/user-attachments/assets/58bcd937-1368-4c7c-b8e6-89097fd42692)
+
 
 Result:
 Thus, the program  that create a function to find the greatest number is verified successfully.
@@ -36,10 +56,29 @@ Algorithm:
 7.	Call the calculate_the_max function with input values.
  
 Program:
-//type your code here
+```
+#include <stdio.h>
+
+int main() {
+    int n, k, max_and = 0, max_or = 0, max_xor = 0;
+    scanf("%d %d", &n, &k);
+    
+    for (int a = 1; a < n; a++) {
+        for (int b = a + 1; b <= n; b++) {
+            if ((a & b) < k && (a & b) > max_and) max_and = a & b;
+            if ((a | b) < k && (a | b) > max_or) max_or = a | b;
+            if ((a ^ b) < k && (a ^ b) > max_xor) max_xor = a ^ b;
+        }
+    }
+    
+    printf("%d\n%d\n%d\n", max_and, max_or, max_xor);
+    return 0;
+}
+```
 
 Output:
-//paste your output here
+![image](https://github.com/user-attachments/assets/7253ca0f-e598-4c8c-882f-f47caacca790)
+
 
 Result:
 Thus, the program to print the maximum values for the AND, OR and XOR comparisons
@@ -59,10 +98,46 @@ Algorithm:
 5.	Use a for loop to iterate over the queries.
  
 Program:
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+int noshel, noque;
+scanf("%d %d", &noshel, &noque);
+int *nobookarr = (int *)calloc(noshel, sizeof(int));
+int **shelarr = (int **)malloc(noshel * sizeof(int *));
+for (int i = 0; i < noshel; i++) shelarr[i] = NULL;
+for (int i = 0; i < noque; i++) {
+int type;
+scanf("%d", &type);
+if (type == 1) {
+int shelf, pages;
+scanf("%d %d", &shelf, &pages);
+int books = nobookarr[shelf];
+shelarr[shelf] = (int *)realloc(shelarr[shelf], (books + 1)
+* sizeof(int));
+shelarr[shelf][books] = pages;
+nobookarr[shelf]++;
+} else if (type == 2) {
+int shelf, book;
+scanf("%d %d", &shelf, &book);
+printf("%d\n", shelarr[shelf][book]);
+} else if (type == 3) {
+int shelf;
+scanf("%d", &shelf);
+printf("%d\n", nobookarr[shelf]);
+}
+}
+for (int i = 0; i < noshel; i++) free(shelarr[i]);
+free(shelarr);
+free(nobookarr);
+return 0;
+}
+```
 
 Output:
-//paste your output here
+![image](https://github.com/user-attachments/assets/7eb33be4-0a66-42e9-ab2b-27fd37cb7b83)
+
 
 
 Result:
@@ -86,10 +161,24 @@ Algorithm:
 
 
 Program:
-//type your code here
+```
+#include <stdio.h>
+int main() {
+int n;
+scanf("%d", &n);
+int a[n], sum = 0;
+for (int i = 0; i < n; i++) {
+scanf("%d", &a[i]);
+sum += a[i];
+}
+printf("%d\n", sum);
+return 0;
+}
+```
 
 Output:
-//paste your output here
+![image](https://github.com/user-attachments/assets/0e97a7db-832b-4db5-b59b-e82b458d9534)
+
 
  
 
@@ -120,14 +209,41 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 
 
 Program:
-//type your code here
+```
+#include <stdio.h>
+#include <ctype.h>
+int main() {
+char sentence[1000];
+int count = 0, inWord = 0;
+fgets(sentence, sizeof(sentence), stdin);
+for (int i = 0; sentence[i] != '\0'; i++) {
+if (isalpha(sentence[i]))
+{
+if (!inWord)
+{
+count++;
+inWord = 1;
+}
+}
+else
+{
+inWord = 0;
+}
+}
+printf("%d\n", count);
+return 0;
+}
+```
 
 Output:
-//paste your output here
+![image](https://github.com/user-attachments/assets/1c392562-f00f-4a15-a367-d16a0cb80d30)
+
 
 
 
 Result:
+Thus, the program that counts the number of words in a given sentence is verified
+successfully.
 
 Thus, the program that counts the number of words in a given sentence is verified 
 successfully.
